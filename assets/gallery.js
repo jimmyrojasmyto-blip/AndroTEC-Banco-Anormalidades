@@ -14,6 +14,8 @@ let state = { data: null, filter: "Todas" };
 async function init() {
   const res = await fetch("data/anormalidades.json");
   state.data = await res.json();
+  const notaEl = el("notaFaltantes");
+  if (notaEl && state.data.nota) notaEl.textContent = state.data.nota;
   buildFilters();
   render();
   lbClose.addEventListener("click", closeLightbox);
